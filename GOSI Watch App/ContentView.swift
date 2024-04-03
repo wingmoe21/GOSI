@@ -1,39 +1,69 @@
+//
+//  ContentView.swift
+//  mynewapp Watch App
+//
+//  Created by Danah  on 01/04/2024.
+//
 import SwiftUI
 
 struct ContentView: View {
-    let customGreen = Color(red: 0 / 255, green: 174 / 255, blue: 154 / 255)
     var body: some View {
         
-        Text("Share live location").font(.headline)
-        //  .navigationBarItems(leading: )
-
-        List {
-            Button(action: {
-                // Code to share location for 1 hour
-            }) {
-                Text("Share for 1 Hour")
-                    .foregroundColor(customGreen)
+        
+        NavigationView {
+            List {
+                NavigationLink(destination: EmergencyView()) {
+                    HStack {
+                        
+                        ZStack{
+                            Circle()
+                                .foregroundColor(.red)
+                                .frame(width: 30, height: 30)
+                            Text("sos").foregroundColor(.white)
+                        }
+                        Text("Tab To Call").padding()
+                    }
+                    
+                    
+                }
+                NavigationLink(destination: NotifyFamilyView()) {
+                    
+                    HStack {
+                        ZStack{
+                            Circle()
+                                .foregroundColor(.green)
+                                .frame(width: 30, height: 30)
+                            Image(systemName: "bell")
+                        }
+                        Text("Notify Family").padding()
+                    }
+                }
+                NavigationLink(destination: NotifyFamilyView()) {
+                    
+                    HStack {
+                        ZStack{
+                            Circle()
+                                .foregroundColor(.yellow)
+                                .frame(width: 30, height: 30)
+                            Image(systemName: "location.fill")
+                        }
+                        Text("Share Live Location").padding()
+                    }
+                }
+                
+                
+                
+                
+                
+                Link("Call Emergency", destination: URL(string: "tel:911")!)
+                    .foregroundColor(.white)
+                    .padding()
             }
-            .listRowBackground(Color.clear)
-            
-            Button(action: {
-                // Code to share location until end of day
-            }) {
-                Text("Share until end of day")
-                    .foregroundColor(customGreen)
-            }
-            .listRowBackground(Color.clear)
-            
-            Button(action: {
-                // Code to share location indefinitely
-            }) {
-                Text("Share indefinitely")
-                    .foregroundColor(customGreen)
-            }
-            .listRowBackground(Color.clear)
+            .navigationTitle("Menu")
         }
-        .listStyle(CarouselListStyle())
+        
+        
+        
     }
 }
-
 
